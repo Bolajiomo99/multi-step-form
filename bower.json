@@ -15,7 +15,8 @@
     "tests"
   ],
   "dependencies": {
-    "select2": "^4.0.3"
+    "select2": "^4.0.3",
+    "visualcaptcha.jquery": "^0.0.8"
   },
   "overrides": {
     "select2": {
@@ -23,6 +24,9 @@
         "dist/js/select2.min.js",
         "dist/css/select2.min.css"
       ]
-    }
+    },
+    "visualcaptcha.jquery": [
+      "visualcaptcha.jquery.src.js"
+    ]
   }
 }

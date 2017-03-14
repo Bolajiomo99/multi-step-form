@@ -818,6 +818,23 @@ jQuery(document).ready(function($) {
         };
       }
     }
+    
+    function setupCaptcha() {
+      var captcha = $( '#sample-captcha' ).visualCaptcha( {
+        imgPath: 'img/',
+        captcha: {
+            numberOfImages: 5,
+                callbacks: {
+                    loading: function( captcha ){
+                    console.log( 'I am loading.', captcha );
+                },
+                loaded: function( captcha ){
+                    console.log( 'I am loaded.', captcha );
+                }
+            }
+        }
+      });
+    }
 
     function setup() {
 
@@ -864,6 +881,8 @@ jQuery(document).ready(function($) {
         $('.fw-btn-submit').click(submit);
 
         setupColors();
+        
+        setupCaptcha();
 
         updateSummary($('.fw-wizard'));
     }

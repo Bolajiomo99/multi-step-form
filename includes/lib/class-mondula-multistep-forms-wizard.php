@@ -199,6 +199,9 @@ class Mondula_Form_Wizard_Wizard {
                             <?php
                                 $step->render( $wizardId, $i );
                                 if ($i == $len - 1) {
+                                  ?>
+                                  <div id="sample-captcha"></div>
+                                  <?php 
                                   if ($showSummary) {
                                   ?>
                                     <div class="fw-summary-container">
