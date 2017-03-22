@@ -37,10 +37,28 @@ class Mondula_Form_Wizard_Admin {
     }
 
     private function init () {
-        add_action( 'admin_menu', array( $this, 'setup_menu' ) );
+      add_action( 'admin_menu', array( $this, 'setup_menu' ) );
 
-        add_action( 'wp_ajax_fw_wizard_save', array( $this, 'save' ) );
-        add_action( 'wp_ajax_nopriv_fw_wizard_save', array( $this, 'save' ) );
+      add_action( 'wp_ajax_fw_wizard_save', array( $this, 'save' ) );
+      add_action( 'wp_ajax_nopriv_fw_wizard_save', array( $this, 'save' ) );
+      add_action( 'admin_menu', array ( $this, 'export_json' ) );
+    }
+    
+    public function export_json() {
+      if ($_GET['page'] === 'mondula-multistep-forms' && isset($_GET['export'])) {
+        $id = $_GET['export'];
+        $json = $this->_wizard_service->get_as_json( $id );
+        $prettyjson = json_encode(json_decode($json), JSON_PRETTY_PRINT);
+        $blogname = sanitize_key(get_bloginfo('name'));
+        $filename = $blogname . '_msf-' . $id . '_' . date( 'Y-m-d-hi' ) . '.json';
+        header( "Content-Description: File Transfer" );
+        header( "Content-type: application/json", true, 200 );
+        header( "Content-Disposition: attachment; filename=" . $filename );
+        header( "Pragma: no-cache" );
+        header( "Expires: 0" );
+        echo $prettyjson;
+        exit();
+      }
     }
 
     public function setup_menu () {
@@ -84,11 +102,15 @@ class Mondula_Form_Wizard_Admin {
         $edit_url = esc_url( add_query_arg( array('edit' => '')) );
         $edit = isset($_GET['edit']);
         $delete = isset( $_GET['delete'] );
+        $export = isset($_GET['export']);
+
 
         if ($edit) {
             $this->edit( $_GET['edit'] );
         } else if ($delete) {
             $this->delete( $_GET['delete'] );
+        } else if ($export) {
+              $this->export( $_GET['export'] );
         } else {
 //            $this->wizard_list();
             $this->table();
@@ -104,10 +126,11 @@ class Mondula_Form_Wizard_Admin {
         $table = new Mondula_Form_Wizard_List_Table( $this->_wizard_service, $this->_text_domain );
         $table->prepare_items();
         $edit_url = esc_url( add_query_arg( array( 'edit' => '' )));
+        $import_url = esc_url( add_query_arg( array( 'import' => '' )));
         ?>
         <div class="wrap">
             <div id="icon-users" class="icon32"></div>
-            <h2>Multi Step Forms<a href="<?php echo $edit_url ?>" class="page-title-action"><?php _e( 'Add New', $this->_text_domain ) ?></a></h2>
+            <h2>Multi Step Forms <a href="<?php echo $edit_url ?>" class="page-title-action"><?php _e( 'Add New', $this->_text_domain ) ?></a><a href="<?php echo $import_url ?>" class="page-title-action"><?php _e( 'Import', $this->_text_domain ) ?></a></h2>
             <form id="fw-wizard-table" method="get">
                 <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
             <?php $table->display(); ?>

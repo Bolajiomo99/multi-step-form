@@ -77,10 +77,12 @@ class Mondula_Form_Wizard_List_Table extends WP_LIST_TABLE {
 
       $edit_url = esc_url( add_query_arg( array( 'edit' => $item['id'] ) ) );
       $delete_url = esc_url( add_query_arg ( array ( 'delete' => $item['id'] ) ) );
+      $export_url = esc_url( add_query_arg( array( 'export' => $item['id'] ) ) );
 
       $actions = array(
           'fw-edit' => '<a href="' . $edit_url . '">' . __( 'Edit', $this->_text_domain ) . '</a>',
-          'fw-delete' => '<a href="' . $delete_url . '">' . __( 'Delete', $this->_text_domain ) . '</a>'
+          'fw-delete' => '<a href="' . $delete_url . '">' . __( 'Delete', $this->_text_domain ) . '</a>',
+          'fw-export' => '<a href="' . $export_url . '">' . __( 'Export', $this->_text_domain ) . '</a>'
       );
       
       if (!$wiz['title'] || $wiz['title'] == '') {
