@@ -26,7 +26,7 @@ class Mondula_Form_Wizard_Block_Email extends Mondula_Form_Wizard_Block {
     public function render( $ids ) {
       ?>
       <div class="fw-input-container">
-          <h3><?php echo $this->_label ?></h3><input type="text" class="fw-text-input" data-id="email"><span class="fa fa-envelope form-control-feedback" aria-hidden="true"></span>
+          <h3><?php echo $this->_label ?></h3><input type="text" class="fw-text-input" data-id="email"><img class="msf-input-icon msf-noevent" src="<?php echo msf_get_assets_url() ?>images/envelope-bbb.svg" />
       </div>
       <div class="fw-clearfix"></div>
       <?php

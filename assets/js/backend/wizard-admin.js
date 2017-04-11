@@ -400,7 +400,7 @@
             stepsHtml += renderStep(steps[i], i);
         }
         stepsHtml += '</div>';
-        stepsHtml += '<a class="fw-element-step"><i class="fa fa-plus"></i> '+ wizard.i18n.addStep +'</a>';
+        stepsHtml += $('.fw-element-step')[0].outerHTML;
         stepsHtml += '</div></div>';
         $(container).html(stepsHtml);
     }

@@ -173,12 +173,15 @@
 		}
 	}
 	.fw-btn-submit {
-	    background: @color_submit-bg;
-	    color: #fff;
-	    margin-top: 25px;
-	    &:hover {
-		    background: #bbb;
-		    color: #fff;
+		background: @color_submit-bg;
+		color: #fff;
+		margin-top: 25px;
+		&:hover {
+		  background: #bbb;
+		  color: #fff;
+		}
+		>.fw-btn-submit-loading, >.fw-btn-submit-success, >.fw-btn-submit-fail {
+			display: none;
 		}
 	}
 	.fw-button-fileupload:hover {
@@ -187,6 +190,16 @@
 		-moz-opacity: 0.8;
 		-khtml-opacity: 0.8;
 		opacity: 0.8;
+	}
+	.msf-btn-icon-left > img {
+		width: 1.1em;
+		margin-bottom: -2px;
+    margin-right: 10px;
+	}
+	.msf-btn-icon-right > img {
+		width: 1.1em;
+		margin-bottom: -2px;
+    margin-left: 10px;
 	}
 	.fw-submit-alert {
 		margin: 10px 0;
@@ -483,10 +496,10 @@
 	    padding:10px 20px 10px 60px;
 	    min-height:200px;
 	}
-	.fa.form-control-feedback {
+	.msf-input-icon {
 	    border-right: 1px solid @color_border;
 	    box-sizing: border-box;
-	    color: @color_fa-icons;
+	    color: @color_icons;
 	    float: left;
 	    font-size: 18px;
 	    height: 20px;
@@ -496,27 +509,27 @@
 	    position: absolute;
 	    width:30px;
 	}
-	.fa.t-area {
-	    margin-top: 13px;
-	}
-	.fa.fa-user {
-	    font-size: 25px;
-	    margin-top: 5px;
-	    padding-top: 0;
+	.msf-noevent {
+		pointer-events: none;
 	}
 	/* ------------------------------------------------------------------------*/
 	/* ---- File Upload -------------------------------------------------------*/
 	/* ------------------------------------------------------------------------*/
-	.fa-spinner {
-	    -webkit-animation:spin 1s linear infinite;
-	    -moz-animation:spin 1s linear infinite;
-	    animation:spin 1s linear infinite;
+	.msf-animate-spin {
+	    -webkit-animation:spin 1.5s linear infinite;
+	    -moz-animation:spin 1.5s linear infinite;
+	    animation:spin 1.5s linear infinite;
+	}
+	
+	.msf-fileupload-success, .msf-fileupload-fail, .msf-fileupload-loading {
+		display: none;
 	}
 
 	.fw-file-upload-response {
 		margin-top: 10px;
 		font-size: 16px;
 	}
+	
 
 	.fw-file-upload-input {
 		width: 0.1px;
@@ -533,9 +546,6 @@
 	    display: inline-block;
 			margin-top: 10px;
 			padding: 0.625rem 1.25rem;
-			.fa {
-				margin-right: 10px;
-			}
 	}
 
 	.fw-file-upload-input:focus + label,

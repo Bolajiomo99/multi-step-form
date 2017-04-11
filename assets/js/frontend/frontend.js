@@ -617,11 +617,9 @@ jQuery(document).ready(function($) {
     function alertUser(message, success) {
         $('.fw-alert-user').empty().removeClass('fw-alert-user-fail fw-alert-user-success');
         if (success) {
-            $('.fw-alert-user').addClass('fw-alert-user-success')
-                .append('<i class="fa fa-check-circle" aria-hidden="true"></i>');
+            $('.fw-alert-user').addClass('fw-alert-user-success');
         } else {
-            $('.fw-alert-user').addClass('fw-alert-user-fail')
-                .append('<i class="fa fa-times-circle" aria-hidden="true"></i>');
+            $('.fw-alert-user').addClass('fw-alert-user-fail');
         }
         $('.fw-alert-user').append(message)
             .fadeIn().delay(2000).fadeOut();
@@ -646,7 +644,8 @@ jQuery(document).ready(function($) {
 
     function sendEmail(summary, email, files) {
         var id = $('#multi-step-form').attr('data-wizardid');
-        $('.fw-btn-submit').html('<i class="fa fa-spinner"></i> ' + ajax.i18n.sending);
+        $('.fw-btn-submit-loading').show();
+        $('.fw-btn-submit > span').text(ajax.i18n.sending);
         $.post(
             ajax.ajaxurl, {
                 action: 'fw_send_email',
@@ -657,19 +656,23 @@ jQuery(document).ready(function($) {
                 nonce: ajax.nonce
             },
             function(resp) {
-                var url = $('.fw-container').attr('data-redirect');
-                if (url) {
-                    // redirect to thankyou page
-                    window.onbeforeunload = null;
-                    window.location.href = url;
-                } else {
-                    // TODO: customizable success message
-                    $('.fw-btn-submit').addClass('fw-submit-success').html('<i class="fa fa-check-circle"></i> ' + ajax.i18n.submitSuccess);
-                    $('.fw-btn-submit').unbind( "click" );
-                }
+              $('.fw-btn-submit-loading').hide();
+              var url = $('.fw-container').attr('data-redirect');
+              if (url) {
+                  // redirect to thankyou page
+                  window.onbeforeunload = null;
+                  window.location.href = url;
+              } else {
+                  // TODO: customizable success message
+                  $('.fw-btn-submit > span').text(ajax.i18n.submitSuccess);
+                  $('.fw-btn-submit-success').show();
+                  $('.fw-btn-submit').unbind( "click" );
+              }
             }
         ).fail(function(resp) {
-          $('.fw-btn-submit').addClass('fw-submit-fail').html('<i class="fa fa-times-circle"></i> ' + ajax.i18n.submitError);
+          $('.fw-btn-submit-loading').hide();
+          $('.fw-btn-submit-fail').show();
+          $('.fw-btn-submit > span').text(ajax.i18n.submitError);
           warn('response', resp);
           warn('responseText', resp.responseText);
         });
@@ -684,11 +687,10 @@ jQuery(document).ready(function($) {
         formData.append('file', file);
         formData.append('id', id);
         formData.append('nonce', ajax.nonce);
-        
-        $label.find('i').removeClass('fa-upload fa-times-circle fa-check-circle').addClass("fa-spinner");
+        $('.msf-fileupload-choose').hide();
+        $('.msf-fileupload-loading').show();
         $label.find('span').text(ajax.i18n.uploadingFile);
-
-
+        
         var $block = $(e.target).parent().parent();
 
         $.ajax({
@@ -702,10 +704,13 @@ jQuery(document).ready(function($) {
               setupLeaveWarning();
               if (response.success) {
                 $block.attr('data-uploaded', 'true');
-                $label.find('i').removeClass('fa-times-circle fa-spinner').addClass(" fa-check-circle");
+                $('.msf-fileupload-loading').hide();
+                $('.msf-fileupload-success').show();
                 $label.find('span').html(file.name);
               } else {
-                $label.find('i').removeClass("fa-spinner fa-check-circle").addClass('fa-times-circle');
+                $('.msf-fileupload-fail').show();
+                $('.msf-fileupload-loading').hide();
+                $('.msf-fileupload-success').hide();
                 $label.find('span').html(response.error);
                 warn(response.error);
               }
@@ -728,7 +733,9 @@ jQuery(document).ready(function($) {
                   $('[data-type=fw-file]').each(function(i, e) {
                       var fileInput = $(e).find('input');
                       fileInput.replaceWith(fileInput.val('').clone(true));
-                      $(e).find('label > i').removeClass('fa-check-circle').addClass('fa-upload');
+                      $('.msf-fileupload-success').hide();
+                      $('.msf-fileupload-fail').hide();
+                      $('.msf-fileupload-choose').show();
                       $(e).find('label > span').text(ajax.i18n.chooseFile);
                       $(e).attr('data-uploaded', 'false');
                   });
@@ -878,7 +885,6 @@ jQuery(document).ready(function($) {
             setup();
           }
         });
-
     }
 
     init();

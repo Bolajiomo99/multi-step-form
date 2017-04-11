@@ -27,7 +27,7 @@ class Mondula_Form_Wizard_Block_Date extends Mondula_Form_Wizard_Block {
         $locale = substr( get_locale(), 0, 2) === 'de' ? 'de' : 'en'; // TODO this is possibly not a good idea
         ?>
         <div class="fw-input-container">
-            <h3><?php echo $this->_label ?></h3><input type="text" class="fw-text-input fw-datepicker-here" data-id="date" data-language="<?php echo $locale; ?>"><span class="fa fa-calendar form-control-feedback" aria-hidden="true"></span>
+            <h3><?php echo $this->_label ?></h3><input type="text" class="fw-text-input fw-datepicker-here" data-id="date" data-language="<?php echo $locale; ?>"><img class="msf-input-icon msf-noevent" src="<?php echo msf_get_assets_url() ?>images/calendar-bbb.svg" />
         </div>
         <div class="fw-clearfix"></div>
         <?php

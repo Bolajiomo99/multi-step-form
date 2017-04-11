@@ -29,7 +29,13 @@ class Mondula_Form_Wizard_Block_File extends Mondula_Form_Wizard_Block {
       <div class="fw-input-container">
         <h3><?php echo $this->_label ?></h3>
         <input type="file" name="<?php echo $group ?>" id="<?php echo $group ?>" class="fw-file-upload-input">
-        <label class="fw-btn fw-button-fileupload" for="<?php echo $group ?>"><i class="fa fa-upload fw-file-upload-status" aria-hidden="true"></i><span><?php _e('Choose a file', 'multi-step-form') ?></span></label>
+        <label class="fw-btn fw-button-fileupload msf-btn-icon-left" for="<?php echo $group ?>">
+          <img class="msf-fileupload-choose msf-noevent" src="<?php echo msf_get_assets_url() ?>images/upload-fff.svg" />
+          <img class="msf-fileupload-loading msf-animate-spin msf-noevent" src="<?php echo msf_get_assets_url() ?>images/spinner-fff.svg" />
+          <img class="msf-fileupload-success msf-noevent" src="<?php echo msf_get_assets_url() ?>images/check-circle-fff.svg" />
+          <img class="msf-fileupload-fail msf-noevent" src="<?php echo msf_get_assets_url() ?>images/times-circle-fff.svg" />
+          <span><?php _e('Choose a file', 'multi-step-form') ?></span>
+        </label>
       </div>
       <div class="fw-clearfix"></div>
       <?php

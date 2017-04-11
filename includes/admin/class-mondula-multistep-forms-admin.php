@@ -44,6 +44,7 @@ class Mondula_Form_Wizard_Admin {
     public function setup_menu () {
         $all = add_menu_page( 'Multi Step Form', 'Multi Step Form', 'manage_options', 'mondula-multistep-forms', array( $this, 'menu' ), 'dashicons-feedback', '35' );
         $add = add_submenu_page( 'mondula-multistep-forms', 'Mondula List Table', 'Add New', 'manage_options', 'mondula-multistep-forms&edit', array( $this, 'menu' ));
+        $add = add_submenu_page( 'mondula-multistep-forms', 'Mondula List Table', 'Add New', 'manage_options', 'mondula-multistep-forms&edit', array( $this, 'menu' ));
         add_action( 'admin_print_styles-' . $all, array( $this, 'admin_js' ) );
         add_action( 'admin_print_styles-' . $add, array( $this, 'admin_js' ) );
     }
@@ -263,16 +264,16 @@ class Mondula_Form_Wizard_Admin {
                             <div class="inside">
                                 <div class="fw-elements">
                                     <input type="text" class="fw-wizard-title" value="Form Wizard" placeholder="Form Title">
-                                    <a class="fw-element-step"><i class="fa fa-plus"></i> <?php _e( 'Add Step' ) ?></a>
+                                    <a class="fw-element-step"><img src="<?php echo msf_get_assets_url() ?>images/plus-fff.svg" /> <?php _e( 'Add Step' ) ?></a>
                                     <h4>Drag &amp; Drop an element from below to a section</h4>
-                                    <a class="fw-draggable-block fw-element-radio" data-type="radio"><i class="fa fa-arrows"></i> Radio/Checkbox</a>
-                                    <a class="fw-draggable-block fw-element-select" data-type="select"><i class="fa fa-arrows"></i> Select/Dropdown</a>
-                                    <a class="fw-draggable-block fw-element-text" data-type="text"><i class="fa fa-arrows"></i> Text field</a>
-                                    <a class="fw-draggable-block fw-element-textarea" data-type="textarea"><i class="fa fa-arrows"></i> Textarea</a>
-                                    <a class="fw-draggable-block fw-element-email" data-type="email"><i class="fa fa-arrows"></i> Email</a>
-                                    <a class="fw-draggable-block fw-element-file" data-type="file"><i class="fa fa-arrows"></i> File Upload</a>
-                                    <a class="fw-draggable-block fw-element-date" data-type="date"><i class="fa fa-arrows"></i> Date</a>
-                                    <a class="fw-draggable-block fw-element-paragraph" data-type="paragraph"><i class="fa fa-arrows"></i> Paragraph</a>
+                                    <a class="fw-draggable-block fw-element-radio" data-type="radio"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Radio/Checkbox</a>
+                                    <a class="fw-draggable-block fw-element-select" data-type="select"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Select/Dropdown</a>
+                                    <a class="fw-draggable-block fw-element-text" data-type="text"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Text field</a>
+                                    <a class="fw-draggable-block fw-element-textarea" data-type="textarea"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Textarea</a>
+                                    <a class="fw-draggable-block fw-element-email" data-type="email"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Email</a>
+                                    <a class="fw-draggable-block fw-element-file" data-type="file"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> File Upload</a>
+                                    <a class="fw-draggable-block fw-element-date" data-type="date"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Date</a>
+                                    <a class="fw-draggable-block fw-element-paragraph" data-type="paragraph"><img src="<?php echo msf_get_assets_url() ?>images/arrows-757575.svg" /> Paragraph</a>
                                 </div>
                                 <div class="fw-actions">
                                     <button class="fw-button-save"><?php _e( 'Save' ) ?></button>

@@ -210,7 +210,12 @@ class Mondula_Form_Wizard_Wizard {
                                     <?php
                                     }
                                     ?>
-                                  <button type="button" class="fw-btn-submit"><?php _e('Submit', 'multi-step-form') ?></button>
+                                  <button type="button" class="fw-btn-submit msf-btn-icon-left">
+                                    <img class="fw-btn-submit-loading msf-animate-spin msf-noevent" src="<?php echo msf_get_assets_url() ?>images/spinner-fff.svg" />
+                                    <img class="fw-btn-submit-success msf-noevent" src="<?php echo msf_get_assets_url() ?>images/check-circle-fff.svg" />
+                                    <img class="fw-btn-submit-fail msf-noevent" src="<?php echo msf_get_assets_url() ?>images/times-circle-fff.svg" />
+                                    <span><?php _e('Submit', 'multi-step-form') ?></span>
+                                  </button>
                                 <?php
                                 }
                                 ?>
@@ -225,8 +230,8 @@ class Mondula_Form_Wizard_Wizard {
             <div class="fw-wizard-button-container">
                 <div class="fw-container">
                     <div class="fw-wizard-buttons">
-                        <button class="fw-button-previous"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> &nbsp;<?php _e( 'Previous Step', 'multi-step-form' ) ?></button>
-                        <button class="fw-button-next"><?php _e( 'Next Step', 'multi-step-form' ) ?> &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                        <button class="fw-button-previous msf-btn-icon-left"><img class="msf-noevent" src="<?php echo msf_get_assets_url() ?>images/arrow-circle-left-fff.svg" /><?php _e( 'Previous Step', 'multi-step-form' ) ?></button>
+                        <button class="fw-button-next msf-btn-icon-right"><?php _e( 'Next Step', 'multi-step-form' ) ?> &nbsp;<img class="msf-noevent" src="<?php echo msf_get_assets_url() ?>images/arrow-circle-right-fff.svg" /></i></button>
                     </div>
                 </div>
             </div>

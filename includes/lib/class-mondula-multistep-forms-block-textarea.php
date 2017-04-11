@@ -27,7 +27,7 @@ class Mondula_Form_Wizard_Block_Textarea extends Mondula_Form_Wizard_Block {
     public function render( $ids ) {
         ?>
     <div class="fw-input-container">
-        <h3><?php echo $this->_label ?></h3><textarea class="fw-textarea" data-id="textarea"></textarea><span class="fa fa-pencil t-area form-control-feedback" aria-hidden="true"></span>
+        <h3><?php echo $this->_label ?></h3><textarea class="fw-textarea" data-id="textarea"></textarea><img class="msf-input-icon msf-noevent" src="<?php echo msf_get_assets_url() ?>images/pencil-bbb.svg" />
     </div>
     <div class="fw-clearfix"></div>
         <?php

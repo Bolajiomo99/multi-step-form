@@ -76,6 +76,10 @@ function msf_drop_tables( $tables = array(), $blog_id = null ) {
 
 add_filter( 'wpmu_drop_tables', 'msf_drop_tables', 10, 2);
 
+function msf_get_assets_url() {
+  echo plugins_url( 'assets/', __FILE__ );
+}
+
 /**
  * Returns the main instance of Mondula_Form_Wizard to prevent the need to use globals.
  *
